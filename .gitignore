@@ -1,0 +1,9 @@
+.project
+.pydevproject
+.settings/
+build/
+dist/
+pynav.egg-info/
+.idea/
+tests/
+venv/
