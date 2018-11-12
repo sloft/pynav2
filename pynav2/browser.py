@@ -1,3 +1,22 @@
+"""
+This file is part of Pynav2.
+
+Pynav2 is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Pynav2 is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with Pynav2. If not, see <http://www.gnu.org/licenses/lgpl.html>.
+
+Copyright 2018 Sloft http://bitbucket.org/sloft/pynav
+"""
+
 import random
 import time
 import os
@@ -21,7 +40,6 @@ class Browser(object):
         self.user_agent = ua.firefox_windows
         self.timeout = None  # request timeout
         self.verbose = False  # print additional information if True
-        self.text = None  # self.response.text if response loaded
         self.history = []  # urls history
         self.session.verify = False  # do not verify HTTPS certificate if False
         self._sleep_time_min = 0.0
@@ -72,7 +90,6 @@ class Browser(object):
 
     def _init_beautifulSoup(self):
         self.bs = BeautifulSoup(self.response.text, features="html.parser")
-        self.text = self.response.text
 
     def download(self, url: str, path: str=None, filename: str=None, data=None, **kwargs):
         """ download file from url to path (folder)
@@ -171,6 +188,16 @@ class Browser(object):
             kwargs['alt'] = alt
 
         return [self._add_path(link.get('src')) for link in self.bs.find_all('img', **kwargs)]
+
+    @property
+    def text(self):
+        """ Return the text of the response if any """
+        return self.response.text
+
+    @property
+    def json(self):
+        """ returns the json-encoded content of the response, if any """
+        return self.response.json()
 
     @property
     def links(self):
