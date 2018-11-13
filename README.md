@@ -52,7 +52,7 @@ Get http://example.com/user-agent/json wich return a the json-encoded content of
 '<!DOCTYPE html>\n<html lang="mul" class="no-js">\n<head>\n<meta charset="utf-8">\n<title>example.com</title>...'
 ```
 
-#### HTTP HEAD request and print headers
+#### HTTP HEAD request and print response headers
 ```python
 >>> b.head('example.com')
 <Response [200]>
@@ -108,7 +108,7 @@ Any beautifulSoup.find_all() parameter can be added, see [Beautiful Soup documen
 #### Download file
 ```python
 >>> b.verbose=True
->>> b.download('http://example.com/ubuntu-amd64', '/tmp')  # it will follow redirect and look for header content-disposition to find filename
+>>> b.download('http://example.com/ubuntu-amd64', '/tmp')  # it will follow redirect and look for headers content-disposition to find filename
 downloading ubuntu-18.04.1-desktop-amd64.iso (1.8 GB) to: /tmp/ubuntu-18.04.1-desktop-amd64.iso
 download completed in 12 minutes 5 seconds (1.8 GB)
 
@@ -118,23 +118,28 @@ download completed in 12 minutes 5 seconds (1.8 GB)
 ```python
 >>> b.handle_referer = True
 >>> b.get('somewhere.com')
->>> b.get('example.com')  # header will have http://somewhere.com as referer
->>> b.get('there.com')  # header will have http://example.com as referer
+>>> b.get('example.com')  # request headers will have http://somewhere.com as referer
+>>> b.get('there.com')  # request headers will have http://example.com as referer
 ```
 
 ####  Set referer manually 
 ```python
 >>> b.referer = 'http://www.here.com'
->>> b.get('example.com')
+>>> b.get('example.com') # request headers will have http://here.com as referer
 ```
 
 ####  Set user-agent 
+useragent module include a list of user-agents :
+
+firefox_windows, chrome_windows, edge_windows, ie_windows, firefox_linux, chrome_linux, safari_mac
+
+Default user-agent is firefox_windows 
 ```python
 >>> from pynav2 import useragent
 >>> b.user_agent = useragent.firefox_linux
->>> b.get('example.com')  # header request will have 'Mozilla/5.0 (X11; Linux x86_64; rv:56.0) Gecko/20100101 Firefox/56.0' as User-Agent
+>>> b.get('example.com')  # request headers will have 'Mozilla/5.0 (X11; Linux x86_64; rv:56.0) Gecko/20100101 Firefox/56.0' as User-Agent
 >>> b.user_agent = 'my_app/v1.0'
->>> b.get('example.com')  # header request will have my_app/v1.0 as User-Agent 
+>>> b.get('example.com')  # request headers will have my_app/v1.0 as User-Agent 
 ```
 
 #### Set sleep time before a request 
@@ -193,4 +198,11 @@ See [Requests documentation](http://docs.python-requests.org/en/master/)
 >>> b.get('example3.com')
 >>> print b.history
 ['example1.com', 'example2.com', 'example3.com']
+```
+
+#### Disable "InsecureRequestWarning: Unverified HTTPS request is being made"
+```python
+>>> import urllib3
+>>> urllib3.disable_warnings()
+>>> b.get('example.com')  # no warnings 
 ```

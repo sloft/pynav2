@@ -1,4 +1,4 @@
 include README.md
 include INSTALL
 include MANIFEST.in
-
+include LICENSE
