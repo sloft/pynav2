@@ -17,7 +17,7 @@ setup(
         license="GNU Lesser General Public License Version 3 (LGPLv3)",
         keywords=["programmatic", "web", "browser"],
         url="https://github.com/sloft/pynav2/",
-        download_url="https://pypi.org/project/pynav/#files",
+        download_url="https://pypi.org/project/pynav2/#files",
         python_requires='>=3.4',
         install_requires=[
             'requests',

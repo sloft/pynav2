@@ -14,7 +14,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with Pynav2. If not, see <http://www.gnu.org/licenses/lgpl.html>.
 
-Copyright 2018 Sloft http://bitbucket.org/sloft/pynav
+Copyright 2018 Sloft https://github.com/sloft/pynav2
 """
 
 firefox_windows = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:63.0) Gecko/20100101 Firefox/63.0'
