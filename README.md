@@ -16,7 +16,7 @@ If python2 is the default python binary
 pip3 install pynav2
 ```
 ### Licence
-LGPL (GNU Lesser General Public License)
+GNU LGPLv3 (GNU Lesser General Public License Version 3)
 
 ### Interactive mode examples
 Required for all examples
@@ -76,7 +76,7 @@ http://example.com/contact
 ```
 
 #### Filter links
-Any beautifulSoup.find_all() parameter can be added, see [Beautifll Soup documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+Any beautifulSoup.find_all() parameter can be added, see [Beautiful Soup documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 ```python
 >>> import re
 >>> b.get('example.com')
@@ -96,7 +96,7 @@ Any beautifulSoup.find_all() parameter can be added, see [Beautifll Soup documen
 ```
 
 #### Filter images
-Any beautifulSoup.find_all() parameter can be added, see [Beautifll Soup documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+Any beautifulSoup.find_all() parameter can be added, see [Beautiful Soup documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 ```python
 >>> b.get('example.com')
 <Response [200]>

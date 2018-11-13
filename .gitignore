@@ -3,7 +3,9 @@
 .settings/
 build/
 dist/
-pynav.egg-info/
+pynav2.egg-info/
 .idea/
 tests/
 venv/
+.pyc
+__pycache__/
