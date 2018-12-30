@@ -162,14 +162,39 @@ Default user-agent is firefox_windows
 >>> b.session.close()
 ```
 
-#### Set HTTP proxy working with HTTPS request
+#### Set HTTP proxy working with HTTPS request for one request
 For SOCKS proxies see [Requests documentation](http://docs.python-requests.org/en/master/user/advanced/#socks)
 ```python
 >>> b.get('https://httpbin.org/ip').json()['origin']
 111.111.111.111
 >>> proxies = {'https':'10.0.0.0:1234'}
+>>> b.timeout = 10  # could be useful to wait 10 seconds if proxies are slow
 >>> b.get('https://httpbin.org/ip', proxies=proxies).json()['origin']
-222.222.222.222
+10.0.0.0
+```
+
+#### Set HTTP proxy working with HTTPS request for all requests
+For SOCKS proxies see [Requests documentation](http://docs.python-requests.org/en/master/user/advanced/#socks)
+```python
+>>> b.get('https://httpbin.org/ip').json()['origin']
+111.111.111.111
+>>> b.proxies = {'https':'10.0.0.0:1234'}
+>>> b.timeout = 10  # could be useful to wait 10 seconds if proxies are slow
+>>> b.get('https://httpbin.org/ip').json()['origin']
+10.0.0.0
+```
+
+#### Set HTTP proxy working with HTTPS request for all request and another proxy for a specific domain
+For SOCKS proxies see [Requests documentation](http://docs.python-requests.org/en/master/user/advanced/#socks)
+```python
+>>> b.get('https://httpbin.org/ip').json()['origin']
+111.111.111.111
+>>> b.proxies = {'https':'10.0.0.0:1234', 'https://specific-domain.com' : '10.11.12.13:1234'}
+>>> b.timeout = 10  # could be useful to wait 10 seconds if proxies are slow
+>>> b.get('https://httpbin.org/ip').json()['origin']
+10.0.0.0
+>>> b.get('https://specific-domain.com/ip').json()['origin']
+10.11.12.13
 ```
 
 #### Get beautifulsoup instance

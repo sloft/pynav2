@@ -38,6 +38,7 @@ class Browser(object):
         self.request = PreparedRequest
         self.bs = BeautifulSoup
         self.user_agent = ua.firefox_windows
+        self.proxies = {}  # proxies for all requests
         self.timeout = None  # request timeout
         self.verbose = False  # print additional information if True
         self.history = []  # urls history
@@ -221,6 +222,19 @@ class Browser(object):
     def user_agent(self, user_agent: str):
         """ Decorator to set the user-agent in request header """
         self.session.headers['User-Agent'] = user_agent
+
+    @property
+    def proxies(self) -> {}:
+        """ Return current proxies """
+        return self.session.proxies
+
+    @proxies.setter
+    def proxies(self, proxies: {}):
+        """ Decorator to set proxies to all requests
+            proxies : Dictionary mapping protocol or protocol and host to the URL of the proxy
+            ex: {'https': '10.0.0.0:1234', 'https://example.com': '10.0.0.0:1234'}
+         """
+        self.session.proxies = proxies
 
     @property
     def referer(self):
