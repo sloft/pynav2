@@ -55,11 +55,26 @@ class Browser(object):
         """ call a HEAD request with url and any requests parameters """
         return self._request('HEAD', url, **kwargs)
 
-    def post(self, url, data=None, **kwargs):
+    def post(self, url, data=None, json=None, **kwargs):
         """ call a POST request with url, dict data and any requests parameters """
-        return self._request('POST', url, data, **kwargs)
+        return self._request('POST', url, data=data, json=json, **kwargs)
 
-    def _request(self, method, url: str, data=None, **kwargs):
+    def put(self, url, data=None, **kwargs):
+        """ call a PUT request with url, dict data and any requests parameters """
+        return self._request('PUT', url, data=data, **kwargs)
+
+    def delete(self, url, **kwargs):
+        """ call a DELETE request with url and any requests parameters """
+        return self._request('DELETE', url, **kwargs)
+
+    def patch(self, url, data=None, **kwargs):
+        return self._request('PATCH', url, data=data, **kwargs)
+
+    def options(self, url, **kwargs):
+        """ call a OPTIONS request with url and any requests parameters """
+        return self._request('OPTIONS', url, **kwargs)
+
+    def _request(self, method, url: str, data=None, json=None, **kwargs):
         kwargs.setdefault('timeout', self.timeout)
         self._sleep()
 
@@ -75,8 +90,16 @@ class Browser(object):
         if method == 'HEAD':
             self.response = self.session.head(url, allow_redirects=True, **kwargs)
         if method == 'POST':
-            self.response = self.session.post(url, data, **kwargs)
+            self.response = self.session.post(url, data, json, **kwargs)
             self._init_beautifulSoup()
+        if method == 'PUT':
+            self.response = self.session.put(url, data, **kwargs)
+        if method == 'PATCH':
+            self.response = self.session.patch(url, data, **kwargs)
+        if method == 'OPTIONS':
+            self.response = self.session.options(url, **kwargs)
+        if method == 'DELETE':
+            self.response = self.session.delete(url, **kwargs)
 
         self.history.append(url)
         self.url = url

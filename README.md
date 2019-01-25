@@ -52,12 +52,56 @@ Get http://example.com/user-agent/json wich return a the json-encoded content of
 '<!DOCTYPE html>\n<html lang="mul" class="no-js">\n<head>\n<meta charset="utf-8">\n<title>example.com</title>...'
 ```
 
+#### HTTP POST json request and print the json response
+```python
+>>> import json
+>>> data = {'login': 'user', 'password': 'pass'}
+>>> b.post('example.com/login', json=json.dumps(data))  # json to send in the body of the request
+<Response [200]>
+>>> b.json
+{'login': 'success'}
+```
+
 #### HTTP HEAD request and print response headers
 ```python
 >>> b.head('example.com')
 <Response [200]>
 >>> b.response.headers
 {'Server': 'nginx', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '48842', 'Age': '3154', 'Connection': 'keep-alive'}
+```
+
+#### HTTP PUT request and print the json response
+```python
+>>> data = {'version': '2.1', 'licence': 'LGPL'}
+>>> b.put('example.com/api/about/', data=data)
+<Response [200]>
+>>> b.json
+{'update': 'success'}
+```
+
+#### HTTP PATCH request and print the json response
+```python
+>>> data = {'version': '2.1'}
+>>> b.patch('example.com/api/about/', data=data)
+<Response [200]>
+>>> b.json
+{'patch': 'success'}
+```
+
+#### HTTP DELETE request and print the json response
+```python
+>>> b.delete('example.com/api/user/102')
+<Response [200]>
+>>> b.json
+{'delete': 'success'}
+```
+
+#### HTTP OPTIONS request and print the json response
+```python
+>>> b.options('example.com/api/user')
+<Response [200]>
+>>> b.json
+{'options': '...'}
 ```
 
 #### Get all links

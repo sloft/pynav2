@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setup(
         name="pynav2",
-        version="2.0",
+        version="2.1",
         packages=find_packages(),
         # metadata for upload to PyPI
         author="sloft",
