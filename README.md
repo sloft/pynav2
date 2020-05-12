@@ -4,7 +4,7 @@
 ### Requirements
 Python 3.4+
 
-Unittest tested from Python 3.4 to 3.7
+Unittest tested from Python 3.4 to 3.8
 
 ### Installation
 If python3 is the default python binary
