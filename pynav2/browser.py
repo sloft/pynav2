@@ -126,17 +126,17 @@ class Browser(object):
             url = 'http://' + url  # urllib3 will replace by https if available
 
         filename_tmp, filesize, url = self._extract_file_infos(url, data)
-        if filename_tmp is '':
+        if filename_tmp == '':
             filename_tmp = url.split('/')[-1]
 
         # Case root url (http://example.com)
-        if filename_tmp is '':
+        if filename_tmp == '':
             filename_tmp = 'root.html'
 
-        if filename is None:
+        if filename == None:
             filename = filename_tmp
 
-        if path is None:
+        if path == None:
             path = os.getcwd()
 
         if not os.path.isdir(path):
@@ -147,7 +147,7 @@ class Browser(object):
         kwargs.setdefault('timeout', self.timeout)
         self._sleep()
 
-        if data is not None:
+        if data != None:
             r = self.session.post(url, stream=True, data=data, **kwargs)
         else:
             r = self.session.get(url, stream=True, **kwargs)
@@ -184,12 +184,12 @@ class Browser(object):
             class_ is a filter on the link exact class name attribute (<a class="exact_class"></a>)
             text is a regex filter on the link text (<a>anything inside a tag</a>
             any beautifulSoup.find_all() parameter can be added """
-        if href is not None:
+        if href != None:
             href = re.compile(href)
             kwargs['href'] = href
-        if class_ is not None:
+        if class_ != None:
             kwargs['class_'] = class_
-        if text is not None:
+        if text != None:
             text = re.compile(text)
             kwargs['string'] = text
 
@@ -202,12 +202,12 @@ class Browser(object):
                     class_ is a filter on the image exact class name attribute (<img class="exact_class" />)
                     alt is a regex filter on the image alt attribute (<img alt="anything inside alt attribute" />)
                     any beautifulSoup.find_all() parameter can be added """
-        if src is not None:
+        if src != None:
             src = re.compile(src)
             kwargs['src'] = src
-        if class_ is not None:
+        if class_ != None:
             kwargs['class_'] = class_
-        if alt is not None:
+        if alt != None:
             alt = re.compile(alt)
             kwargs['alt'] = alt
 
@@ -310,7 +310,7 @@ class Browser(object):
     def _extract_file_infos(self, url, data=None):
         filename = ''
         filesize = ''
-        if data is not None:
+        if data != None:
             rh = self.session.post(url, allow_redirects=True, data=data)
             rh.close()
         else:
