@@ -27,4 +27,4 @@ before_script:
   - chmod +x mock_server.sh
   - mock_server.sh &
 script:
-  - python3 -m unittest tests/unittestsPynav2.py
+  - python3 -m unittest unittestsPynav2.UnittestsPynav2
