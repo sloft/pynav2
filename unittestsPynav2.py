@@ -9,6 +9,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testUserAgentDefault(self):
         url = 'http://0.0.0.0:8080/user-agent'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         self.assertEqual(b.response.json(), {'user-agent': ua.firefox_windows})
@@ -16,6 +17,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testUserAgentModified(self):
         url = 'http://0.0.0.0:8080/user-agent'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.user_agent = ua.chrome_linux
         b.get(url)
         b.session.close()
@@ -24,6 +26,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testGetImage(self):
         url = 'http://0.0.0.0:8080/'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         images = b.get_images(src='logo')
@@ -33,6 +36,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testGetImage2(self):
         url = 'http://0.0.0.0:8080'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         images = b.get_images(class_='python-logo')
@@ -42,6 +46,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testGetImage3(self):
         url = 'http://0.0.0.0:8080'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         images = b.get_images(alt='yth')
@@ -50,6 +55,7 @@ class UnittestsPynav2(unittest.TestCase):
 
     def testReferer(self):
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.handle_referer = True
         self.assertEqual(b.referer, None)
         b.get('http://0.0.0.0:8080/user-agent')
@@ -63,6 +69,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testGetLink(self):
         url = 'http://0.0.0.0:8080'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         links = b.get_links(text='Python Events')
@@ -72,6 +79,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testGetLink2(self):
         url = 'http://0.0.0.0:8080'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         links = b.get_links(href="windows")
@@ -81,6 +89,7 @@ class UnittestsPynav2(unittest.TestCase):
     def testGetLink3(self):
         url = 'http://0.0.0.0:8080'
         b = B()
+        b.set_sleep_time(0.1, 0.3)
         b.get(url)
         b.session.close()
         links = b.get_links(title=re.compile('success'))
