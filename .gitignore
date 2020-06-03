@@ -5,7 +5,6 @@ build/
 dist/
 pynav2.egg-info/
 .idea/
-tests/
 venv/
 .pyc
 __pycache__/
