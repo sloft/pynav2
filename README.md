@@ -1,6 +1,8 @@
 # Pynav2
 ## Headless programmatic web browser on top of Requests and Beautiful Soup
 
+[![Build Status](https://travis-ci.org/sloft/pynav2.svg?branch=master)](https://travis-ci.org/sloft/pynav2)
+
 ### Requirements
 Python 3.4+
 
