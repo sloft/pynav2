@@ -6,6 +6,10 @@ from pynav2 import useragent as ua
 
 class UnittestsPynav2(unittest.TestCase):
 
+    def testUserAgentGetter(self):
+        b = B()
+        self.assertEqual(b.user_agent, ua.firefox_windows)
+
     def testUserAgentDefault(self):
         url = 'http://0.0.0.0:8080/user-agent'
         b = B()
