@@ -236,7 +236,7 @@ class Browser(object):
     @property
     def user_agent(self) -> str:
         """ Return the current user agent """
-        if 'Referer' in self.session.headers:
+        if 'User-Agent' in self.session.headers:
             return self.session.headers['User-Agent']
         else:
             return None
